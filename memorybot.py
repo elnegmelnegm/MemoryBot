@@ -52,7 +52,7 @@ def get_text():
         (str): The text entered by the user
     """
     input_text = st.text_input("You: ", st.session_state["input"], key="input", 
-                            placeholder="Your AI assistant here! Ask me anything ...请在这里打字问问题吧", 
+                            placeholder="Your AI assistant here! Ask me anything ", 
                             on_change=clear_text,    
                             label_visibility='hidden')
     input_text = st.session_state["temp"]
@@ -101,15 +101,7 @@ with st.sidebar:
     st.markdown(
        "This tool is a work in progress. "
             )
-    st.markdown("---")
-    st.markdown("# 简介")
-    st.markdown(
-       "ChatGPTm就是增加了记忆的ChatGPT。 "
-       "你可以在右边的对话框问任何问题。"
-            )
-    st.markdown(
-       "希望给国内没法注册使用ChatGPT的朋友带来方便！"
-            )
+  
 
     
 # Set up the Streamlit app layout
@@ -180,7 +172,7 @@ with st.expander("Conversation", expanded=True):
 #    word_count += count_words(download_str)
     
     if download_str:
-        st.download_button('Download 下载',download_str)
+        st.download_button('Download',download_str)
 
 # Display stored conversation sessions in the sidebar
 for i, sublist in enumerate(st.session_state.stored_session):
@@ -192,34 +184,7 @@ if st.session_state.stored_session:
     if st.sidebar.checkbox("Clear-all"):
         del st.session_state.stored_session
         
-# Load the images
-image1 = Image.open("wechatqrcode_leo.jpg")
-image2 = Image.open("zhifubaoqrcode_kyle.jpg")
-image3 = Image.open("paypalqrcode.png")
-image4 = Image.open("drpang_shipinhao2.jpg")
 
-# Display the image with text on top
-st.write("I have to pay OpenAI API for each of your usage. Please consider donating $5 to keep this service alive! Thank you!")
-#st.write("我已经为你的这次使用支付了：", word_count, "人民币")
-st.write("我是史丹福机器人庞博士，我提供此应用的初衷是让国内的人也可以体验使用增加了记忆的ChatGPT。我在为你的每次使用支付调用OpenAI API的费用，目前入不敷出，请扫码微信或支付宝支付¥10人民币以便我能够一直提供这个AI小程序，谢谢！")
-st.write("我在我的《史丹福机器人庞博士》微信视频号也有很多关于ChatGPT和怎样使用ChatGPT魔法的视频，还有怎么使用这个小程序的视频，欢迎白嫖。也有系统的收费课程《零基础精通掌握ChatGPT魔法》给愿意知识付费的同学深入学习。 ")
-st.write("所有6节课在我的视频号主页的直播回放里， 每节课99元，第一节课大家可以免费试听。 如果想购买全部6节课，有50%折扣，只要299元。可以在我的视频号主页私信我购买，注明ChatGPT课程。")
 
-#st.image(img, caption=None, width=200)
 
-# Divide the app page into two columns
-col1, col2, col3 = st.columns(3)
 
-# Display the first image in the first column
-with col1:
-    st.image(image1, caption="微信支付", width=200)
-
-# Display the second image in the second column
-with col2:
-    st.image(image2, caption="支付宝", width=200)
-
-# Display the third image in the third column
-with col3:
-    st.image(image3, caption="PayPal", width=200)
-
-st.image(image4, caption="史丹福机器人庞博士视频号，微信扫码前往", width=200)
